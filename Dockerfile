@@ -1,7 +1,14 @@
-from    dockeruser/oracle-java7
+from    ubuntu:12.04
 
 run     echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
 run     apt-get update
+
+# workaround fuse bug
+run     apt-get -y install fuse  || :
+run     rm -rf /var/lib/dpkg/info/fuse.postinst
+run     apt-get -y install fuse
+
+run     apt-get install -y openjdk-7-jdk
 
 run     apt-get install -y vim wget net-tools unzip maven
 run     apt-get install -y less
