@@ -12,6 +12,7 @@ run     apt-get install -y openjdk-7-jdk
 
 run     apt-get install -y vim wget net-tools unzip maven
 run     apt-get install -y less
+run     update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
 
 run     mvn org.apache.maven.plugins:maven-dependency-plugin:2.8:get -Dartifact=org.opendaylight.integration:distributions-serviceprovider:0.1.1-SNAPSHOT:zip:osgipackage -DremoteRepositories=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/ -Dtransitive=false
  
