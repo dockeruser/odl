@@ -10,15 +10,14 @@ run     apt-get -y install fuse
 
 run     apt-get install -y openjdk-7-jdk
 
-run     apt-get install -y vim wget net-tools unzip maven
+run     apt-get install -y vim wget net-tools unzip
 run     apt-get install -y less
 run     update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
 
-run     mvn org.apache.maven.plugins:maven-dependency-plugin:2.8:get -Dartifact=org.opendaylight.integration:distributions-serviceprovider:0.1.1-SNAPSHOT:zip:osgipackage -DremoteRepositories=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/ -Dtransitive=false
- 
- 
+run     wget -O /opt/serviceprovider.zip "http://nexus.opendaylight.org/service/local/artifact/maven/content?r=opendaylight.snapshot&g=org.opendaylight.integration&a=distributions-serviceprovider&v=0.1.1-SNAPSHOT&p=zip&c=osgipackage"
 
-run     unzip `find /root/.m2/ -name '*.zip' | head -n 1` -d /opt
+
+run     unzip /opt/serviceprovider.zip -d /opt
 
 expose  8080 6633 1830 8383
-cmd     /opt/opendaylight/run.sh -Xmx512m
+cmd     /opt/opendaylight/run.sh -Xmx1g
