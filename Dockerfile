@@ -20,4 +20,4 @@ run     wget -O /opt/serviceprovider.zip "http://nexus.opendaylight.org/service/
 run     unzip /opt/serviceprovider.zip -d /opt
 
 expose  8080 6633 1830 8383
-cmd     /opt/opendaylight/run.sh -Xmx1g
+cmd     /opt/opendaylight/run.sh -Xmx1g -Dcontroller.uncaughtExceptionPolicy=ABORT
